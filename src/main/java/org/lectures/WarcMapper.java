@@ -127,6 +127,7 @@ public class WarcMapper extends Mapper<Text, Text, Text, Text> {
 						long length = warc.getHeader().getLength() - warc.getPosition();
 						int sizeLimit = Integer.MAX_VALUE - 1024;
 						byte[] body = readBytes(warc, length, sizeLimit);
+						logger.info("size: "+body.length);
 						put.addColumn(Bytes.toBytes(CFNAME),
 								Bytes.toBytes(fields.size.toString()),
 								Bytes.toBytes(body.length));
